@@ -321,7 +321,7 @@ input[data-error]::after {
 .close:after {
   transform: rotate(-45deg);
 }
-.btn-submit,
+#btn-submit,
 .btn-signup {
   background: #fe142f;
   display: block;
@@ -428,7 +428,7 @@ input[data-error]::after {
   height: 100%;
   background: #232323;
   position: absolute;
-  right: -80px;
+  right: -30px;
   top: 0;
 }
 .hero-content > * {
@@ -436,7 +436,7 @@ input[data-error]::after {
   z-index: 1;
 }
 .hero-headline {
-  font-size: 6rem;
+  font-size: 4.5rem;
   font-weight: normal;
   white-space: nowrap;
 }
@@ -526,4 +526,5 @@ footer {
     opacity: 1;
   }
 }
+
 
