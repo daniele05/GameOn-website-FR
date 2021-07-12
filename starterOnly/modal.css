@@ -63,10 +63,20 @@ img {
   color: #ffffff;
   border-radius: 15px;
 }
+.text-danger{
+  color: red;
+}
+
 
 .topnav .icon {
   display: none;
 }
+input:focus:invalid, textarea:focus:invalid{
+  border-color:#ff0000;
+  
+}
+ 
+
 
 @media screen and (max-width: 768px) {
   .topnav a {display: none;}
@@ -99,6 +109,10 @@ img {
     display: block;
     margin-top: -15px;
   }
+  .copyrights {
+    margin-top: 110px;
+    text-align: center;
+}
 } 
 
 main {
@@ -495,16 +509,19 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 1.5rem;
+    /* font-size: 4.5rem; */
     white-space: normal;
   }
   .hero-text {
     width: unset;
-    font-size: 1.5rem;
+    /* font-size: 1.5rem; */
+    font-size: 1rem;
+    margin-top: 27px;
   }
   .hero-img img {
     border-radius: 10px;
-    margin-top: 40px;
+    margin-top: 20px;
   }
   .hero-section > .btn-signup {
     display: block;
@@ -512,10 +529,16 @@ footer {
     padding: 12px 35px;
   }
   .copyrights {
-    margin-top: 50px;
+    margin-top: 210px;
     text-align: center;
   }
+  footer{
+  padding-left: 2vw;
+  padding-right: 2vw;
+  margin-top: -210px;
+  }
 }
+
 
 @keyframes modalopen {
   from {
@@ -526,5 +549,18 @@ footer {
     opacity: 1;
   }
 }
+.text-success {
+color:green; 
+
+
+}
+
+.small.classList.remove >.text-danger
+{
+  background-color: red;
+  border: 2px solid red;
+}
+
+
 
 
