@@ -320,6 +320,10 @@ input[data-error]::after {
   cursor: pointer;
   transform: scale(0.7);
 }
+.close:hover{
+  text-decoration:none;
+ 
+}
 .close:before,
 .close:after {
   position: absolute;

@@ -1,90 +1,4 @@
 
-// const formData = document.getElementById('first')
-
-// formData = document.querySelector('#formData'); 
-// // Ecouter la modif du nom
-// formData.first.addEventListener('change', function() {
-//     validFirst(this)
-
-// });
-// // creation de la Reg pour la validation first
-// // espace non vide, peut contenir minimum 2 caractères
-// const validFirst = function(){
-//     let nameRegExp = new RegExp(
-//         '^[a-zA-Z]$', 'g')
-// };
-
-// // Tester cote utilisateur
-
-// let testFirst = nameRegExp.test(inputFirst.value);
-// let small = inputFirst.nextElementSibling;
-
-// if(testname){
-//     small.innerHTML = 'Nom Valide'
-// } else {
-//     small.innerHTML = 'Nom Non Valide'
-// };
-
-
-
-
-
-
-
-
-// // const formData = document.querySelectorAll(".formData");
-
-// // // Ecouter la modification de l'email
-// // formData.email.addEventListener('change', function() {
-// //   validEmail(this)
-// // });
-
-// // const validEmail = function(inputEmail) {
-// // // Creation de la reg exp pour validation email
-// //  const RegExp= new RegExp(('email'))
-// //  ('^[a-zA-Z0-9.-_] +[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g');
- 
-
-// // let testEmail = emailRegExp.test(inputEmail.value);
-// // let small = inputEmail.nextElementSibling;
-
-// // if (testEmail) {
-// //   small.innerHTML = " Adresse valide";
-  
-// // } else{
-// //   small.innerHTML = "Adresse Non Valide";
-// // }
-// // };
-
-
-
-// // // Ecouter la modification du prenom
-// // formData.first.addEventListener('change', function(){
-// //   validFirst(this);
-// // });
-
-// // // Validation prenom
-
-// // const validFirst = function(inputFirst) {
-
-// // // creation de la reg exp pour validation prenom
-// // let firstRegExp = new RegExp(
-// //   '^[a-zA-Z]+ {2,} $', 'g'
-// //   );
-// //   // recuperation balise Small
-// //   let small = inputFirst.nextElementSibling;
-
-
-// // // Test de l'expression reguliere
-
-// // if (firstRegExp.test(inputFirst.value)) {
-// //   small.innerHTML = 'Prenom Valide';
-  
-// // } else{
-// //   small.innerHTML = 'Prenom Non Valide'
-// // }
-// // };
-
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -98,7 +12,7 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-// const error = document.querySelector('.error');
+
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -108,18 +22,28 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-// Close the modal form 
-// function closeModal()
+//Close the modal form 
+function twFermer(){
+  window.close()
+}
+
+// function afficher_cacher(id)
 // {
-//   modalbground.style.display="none"; 
+//   if (document.getElementById(id).style.visibility=="hidden") {
+//     document.getElementById(id).style.visibility="visible";
+//     document.getElementById('close').innerHTML="cacher l'icone de fermeture";
+//   } 
+//   else{
+//     document.getElementById(id).style.visibility="hidden"; 
+//     document.getElementById('close').innerHTML="afficher l'icone de fermeture";
+//   }
+//   return true;
 // }
-// document.getElementsById('close').style.display="none";
+
+
+
 
  // Declarer des const par id
-
-
-
-
  // Validation Prénom
 
 const first = document.getElementById("first")
@@ -207,28 +131,23 @@ email.onkeydown = function(){
   const regexo = /^([\.\_a-zA-Z0-9]+)@([a-zA-Z]+)\.([a-zA-Z]){2,3}$/;
   if (regex.test(email.value) || regexo.test(email.value)) 
   {
-    span[0].innerText = "Votre email est valide"; 
-    span[0].style.color = 'lime';
+    let small = email.nextElementSibling;
+    small.innerHTML = 'Email Valide';
+    small.classList.add('text-success');
+    
 
    } else
    {
-    span[0].innerText = "Votre email n'est pas valide"; 
-    span[0].style.color = 'blu';
+    let small = email.nextElementSibling;
+    small.innerHTML = 'le champs ne doit pas etre vide et email doit etre valide';
+    small.classList.add('text-danger');
    }
-
+   
 }
 
 // Validation date de naissance 
 
  const birthdate = document.getElementById("birthdate")
-
- function isEmpty(input){
-   if(input.value===""){
-     return true
-   }else{
-     return false
-   }
- };
   function exactNumber(input){
     if (input.value.lenght===8) {
       return false
@@ -238,8 +157,7 @@ email.onkeydown = function(){
   }
   last.addEventListener('focusout', function(){
   if(isEmpty(birthdate)||!exactNumber(birthdate)){
-    alert('le champs ne doit pas etre vide, doit comporter au total huit caractères')
-
+  
      // Recuperation de la balise small
     let small = birthdate.nextElementSibling;
     small.innerHTML = 'Date Valide';
@@ -303,50 +221,39 @@ email.onkeydown = function(){
 
 
  document.querySelector('formData').addEventListener('change', function(){
-  // function locations(input){
-  //   if (input.value==="") {
-  //     return true
-  //   } else{
-  //     return false
-  //   }
-  // }
-const locations = document.querySelectorAll('input');  // 
+  
+  const locations = document.querySelectorAll('input'); 
+
   for (var i = 0; i < locations.length; i++) {
     if (locations[i].checked) break; 
   }
   console.log('locations[i].value');
- })
+  })
  
  
 // Validation conditions formulaire
 
- const checkbox1 = document.getElementById("checkbox1").innerHTML = localStorage.getItem("checkbox1");
- localStorage.getItem("checkbox1");
- function isEmpty(input){
+ const checkbox1 = document.getElementById("checkbox1")
+//  .innerHTML = localStorage.getItem("checkbox1");
+//  localStorage.getItem("checkbox1");
+ function usingConditions(input){
   if(input.value===""){
-    return true
-  }else{
     return false
+  }else{
+    return true
   }
 };
- function usingConditions(input){
-   if (input.value) {
-     return true
-   } else{
-     return false
-   }
- }
+ 
  usingConditions.addEventListener('focusout', function(){
- if(isEmpty(checkbox1)||!usingConditions(checkbox1)){
+ if(usingConditions(checkbox1)){
    alert('le champs doit etre coché')
-   small.innerHTML = 'Conditions Valides';
-   small.classList.add(text-success);
-   small.classList.remove(text-danger);
+   small.innerHTML = 'Conditions non Valides';
+   small.classList.add(text-danger);
  
  } else{
-   small.innerHTML = 'Conditions Non Valides';
-    small.classList.add(text-danger);
-    small.classList.remove(text-success);
+   
+   small.innerHTML = 'Conditions Valides';
+    small.classList.add(text-success);
 
     // Recuperation de la balise small
 
@@ -357,41 +264,38 @@ const locations = document.querySelectorAll('input');  //
 
  console.log(checkbox1.value)
 
- const checkbox2 = document.getElementById("checkbox2").innerHTML = localStorage.getItem("checkbox2"); ;
-  localStorage.getItem("checkbox2");
+ const checkbox2 = document.getElementById("checkbox2")
+//  .innerHTML = localStorage.getItem("checkbox2"); ;
+//   localStorage.getItem("checkbox2");
  if(isEmpty(checkbox2)||!nextEvents(checkbox2)){
   alert('le champs peut être coché ou non')
   small.innerHTML = 'Case cochée';
 } else{
   small.innerHTML = 'Case non cochée';
+
    // Recuperation de la balise small
 
   let small = checkbox2.nextElementSibling;
  
 }
 
+// Validation du btn final formulaire
 
-// console.log(checkbox2.value)
-
-//  const btnsubmit = document.getElementById("btn-submit").addEventListener('submit', function() {
-//    var error; 
-//    var inputs = document.getElementById("btn-submit").getElementsByTagName("input");
-//    for (var i = 0; i < inputs.lenght; i++) {
-//      console.log(inputs[i])
-//      if (!inputs[i].value) {
-//        error = "Veuillez renseigner tous les champs";
+ const btnsubmit = document.getElementById("btn-submit").addEventListener('submit', function() {
+   var error; 
+   var inputs = document.getElementById("btn-submit").getElementsByTagName("input");
+   for (var i = 0; i < inputs.lenght; i++) {
+     console.log(inputs[i])
+     if (!inputs[i].value) {
+       error = "Veuillez renseigner tous les champs";
        
-//      }
-     
-//    }
+     }
+   }
 
-
-//    if (error) {
-//     e.preventDefault();
-//     document.getElementsById("error").innerHTML = erreur;
-//     return false; 
-//      } else{
-//     alert('Formulaire envoyé!');}
-      
-//   };
-
+   if (error) {
+    e.preventDefault();
+    document.getElementsById("error").innerHTML = erreur;
+    return false; 
+     } else{
+    alert('Formulaire envoyé!');}
+     });

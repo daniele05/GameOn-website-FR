@@ -54,14 +54,15 @@
 
       <div class="bground">
         <div class="content">
-          <span class="close" style="display:none"></span>
-          <div class="modal-body">
-            <form
-              name="reserve"
+            <!--Avec un bouton de formulaire-->
+          <span class="close"  onclick= "twFermer()" value="Fermer la fenetre"></span>
+          <div class="modal-body"
               action="index.html"
               method="get"
               onsubmit="return validate();"
             >
+          
+          
               <div
                 class="formData" id="formData">
                 <label for="surname">Prénom</label><br>
@@ -124,7 +125,7 @@
                   type="radio"
                   id="location1"
                   name="location"
-                  value=0 checked
+                  value=0 
                 />
                 <label class="checkbox-label" for="location1">
                   <span class="checkbox-icon"></span>
@@ -135,7 +136,7 @@
                   type="radio"
                   id="location2"
                   name="location"
-                  value=1
+                  value=1 checked
                 />
                 <label class="checkbox-label" for="location2">
                   <span class="checkbox-icon"></span>
