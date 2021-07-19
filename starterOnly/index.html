@@ -52,10 +52,12 @@
         </button>
       </div>
 
-      <div class="bground">
+      <div class="bground" style= "display: none">
         <div class="content">
             <!--Avec un bouton de formulaire-->
-          <span class="close"  onclick= "twFermer()" value="Fermer la fenetre"></span>
+          <span class="close" id="close"></span>
+          <!--Avec un bouton de formulaire disparaissant au hover-->
+          <span class="close-btn" onclick= "close-btn()" value="Fermer la fenetre"></span>
           <div class="modal-body"
               action="index.html"
               method="get"
@@ -97,7 +99,7 @@
                   placeholder="email"
                   value=""
                 />
-                <span></span>
+                <small></small>
               </div>
               <div
                 class="formData" id="formData">
@@ -108,6 +110,7 @@
                   id="birthdate"
                   name="birthdate"
                   value=""
+                  
                /><br>
                <small></small>
               </div>
@@ -136,8 +139,8 @@
                   type="radio"
                   id="location2"
                   name="location"
-                  value=1 checked
-                />
+                  value=1
+                 />
                 <label class="checkbox-label" for="location2">
                   <span class="checkbox-icon"></span>
                   San Francisco</label
@@ -193,17 +196,15 @@
                 <input
                   class="checkbox-input"
                   type="checkbox"
-                  aria-required="true"
-                  (obligatoire)
                   id="checkbox1"
-                  checked
+                  name="obligatoriesconditions"
                 />
                 <label class="checkbox2-label" for="checkbox1">
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
                 <br>
-                <input class="checkbox-input" type="checkbox" id="checkbox2" />
+                <input class="checkbox-input" type="checkbox" id="checkbox2" name="facultativeconditions" />
                 <label class="checkbox2-label" for="checkbox2">
                   <span class="checkbox-icon"></span>
                    Je souhaite être prévenu des prochains évènements.
