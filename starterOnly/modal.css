@@ -562,7 +562,8 @@ color:green;
 
 }
 
-.small.classList.remove >.text-danger
+.small.classList.remove >
+.text-danger
 {
   background-color: red;
   border: 2px solid red;

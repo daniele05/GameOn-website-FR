@@ -128,8 +128,8 @@ const first = document.getElementById("first")
 
 email.onkeydown = function(){
   // Creation de la Reg pour email
-  const regex = /^([\.\_a-zA-Z0-9]+)@([a-zA-Z]+)\.([a-zA-Z]){2,8}$/;
-  const regexo = /^([\.\_a-zA-Z0-9]+)@([a-zA-Z]+)\.([a-zA-Z]){2,3}$/;
+  const regex = /^([\.\_a-zA-Z0-9]+)@([a-zA-Z]+)\.([a-zA-Z])$/;
+  const regexo = /^([\.\_a-zA-Z0-9]+)@([a-zA-Z]+)\.([a-zA-Z])$/;
   if (regex.test(email.value) || regexo.test(email.value)) 
   {
     let small = email.nextElementSibling;
@@ -153,20 +153,19 @@ const birthdate = document.getElementById('birthdate');
 // Ecouter la modif de la date
 birthdate.addEventListener = ('focusout', function () {
   // Creation de la reg pour validation date
-  console.log('birthdate');
+  console.error('birthdate');
+
    const birthdateReg=  /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]|(?:Jan|Mar|May|Jul|Aug|Oct|Dec)))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2]|(?:Jan|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec))\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)(?:0?2|(?:Feb))\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9]|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep))|(?:1[0-2]|(?:Oct|Nov|Dec)))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
 
-    if(birthdateReg(birthdate.value)){
+    if(birthdateReg.test(birthdate.value)){
       let small = birthdate.nextElementSibling;
-      small.innerHTML = ' format de date de naissance valide';
+      small.innerHTML = 'Format de date de naissance valide';
       small.classList.add('text-success');
-      
-
         
       } else{
-        // console.log('false')
+
         let small = birthdate.nextElementSibling;
-        small.innerHTML = 'Date de naissance non valide';
+        small.innerHTML = 'Format de date de naissance non valide';
         small.classList.add('text-danger');
       //  return  small.innerHTML = '  Format de date de naissance non valide';
        
@@ -183,37 +182,33 @@ birthdate.addEventListener = ('focusout', function () {
 //  localStorage.getItem("quantity");
  // validation de la quantité de tournois effectée ( non vide, minimum 0 maximum 99)
 
- function exactNumbers(input){
-   if (input.value.length <= 99) {
-     return true
-   } else{
-     return false
-   }
- }
- quantity.addEventListener('focusout', function(){
- if(exactNumbers(quantity)){
-   alert('le champs ne doit pas etre vide, doit comporter des caractères compris entre 0 et 99')
-
+//  function exactNumbers(input){
+//    if () {
+//      return false
+//    } else{
+//      return true
+//    }
+//  }
+ quantity.addEventListener('focusout', function()
+ {
+  console.log(quantity.value);
+ if(quantity.value < 99)
+ {
     // Recuperation de la balise small
 
    let small = quantity.nextElementSibling;
-   small.innerHTML = 'Quantite Valide';
+   small.innerHTML = 'Quantite  Valide';
    small.classList.add('text-success');
-  
-  
-    
-  //  small.classList.remove(text-danger);
+
  
- } else{
-    let small = quantity.nextElementSibling;
-    small.innerHTML = 'Quantite non Valide';
-   
-    small.classList.add('text-danger');
-   
-    
-    
-     small.classList.remove(text-success);
+ } else if (quantity.value > 99) {
+  
+  let small = quantity.nextElementSibling;
+  small.innerHTML = 'Quantite non Valide';
+  small.classList.remove("text-success");
+  small.classList.add('text-danger');
  }
+
  }); 
 
  //Validation button radio
@@ -230,6 +225,14 @@ birthdate.addEventListener = ('focusout', function () {
 
    if (!formValid) alert("Must check some option!");
    return formValid;
+ }
+
+ 
+ if(!radios[i].checked){
+   formValid = false; 
+   let radioError = document.getElementById("radio-error")
+   radioError.innerHTML = 'Vous devez choisir au moins une ville'; 
+   radioError.classList.add("text-danger");
  }
 
   
@@ -307,25 +310,53 @@ const checkbox2 = document.getElementById("checkbox2")
 
 // Validation du btn final formulaire
 
- document.getElementById("btn-submit").addEventListener("submit", validate);
-function validate() {
-  var error; 
-   var inputs = document.getElementById("btn-submit").getElementsByTagName("input");
-   for (var i = 0; i < inputs.lenght; i++) {
-     console.log(inputs[i])
-     if (!inputs[i].value) {
-       error = "Veuillez renseigner tous les champs";
-       
-     }
-   }
-   if (error) {
-    e.preventDefault();
-    document.getElementsById("error").innerHTML = erreur;
-    return false; 
-     } else{
-    alert('Formulaire envoyé!');
+ document.getElementById("btn-submit").addEventListener("submit", (e) => {
+  e.preventDefault();
+  let fields = document.querySelectorAll('inputs');
+  let valid = true;
+
+  fields.forEach((field) => {
+    if(!valideField(field)){
+      valid = false; 
+    };
+
+  }); 
+  if(valid){
+    e.target.submit();
   }
-}
+
+ 
+ }, false);
+
+ function valideField(field){
+   if(field.checkValidity()){
+     return true;
+   } else{
+     field.classList.add('invalid');
+     field.previousElementSibling.insertAdjacentHTML('beforeend', '<span class="msg">${field.validationMessage} </span>' )
+     return false;
+   }
+ }
+ 
+
+ // function validate() {
+//   var error; 
+//    var inputs = document.getElementById("btn-submit").getElementsByTagName("input");
+//    for (var i = 0; i < inputs.lenght; i++) {
+//      console.log(inputs[i])
+//      if (!inputs[i].value) {
+//        error = "Veuillez renseigner tous les champs";
+       
+//      }
+//    }
+//    if (error) {
+//     e.preventDefault();
+//     document.getElementsById("error").innerHTML = erreur;
+//     return false; 
+//      } else{
+//     alert('Formulaire envoyé!');
+//   }
+// }
      
     
  
