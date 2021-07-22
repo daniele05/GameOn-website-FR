@@ -151,28 +151,45 @@ const birthdate = document.getElementById('birthdate');
 
 
 // Ecouter la modif de la date
-birthdate.addEventListener = ('focusout', function () {
-  // Creation de la reg pour validation date
-  console.error('birthdate');
+function birthdateValid(input){
+if(input.value = "jj-mm-aaaa") {
+return true
+} else{
+  return false
+}
+};
 
-   const birthdateReg=  /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]|(?:Jan|Mar|May|Jul|Aug|Oct|Dec)))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2]|(?:Jan|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec))\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)(?:0?2|(?:Feb))\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9]|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep))|(?:1[0-2]|(?:Oct|Nov|Dec)))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
-
-    if(birthdateReg.test(birthdate.value)){
-      let small = birthdate.nextElementSibling;
-      small.innerHTML = 'Format de date de naissance valide';
-      small.classList.add('text-success');
-        
-      } else{
-
-        let small = birthdate.nextElementSibling;
-        small.innerHTML = 'Format de date de naissance non valide';
-        small.classList.add('text-danger');
-      //  return  small.innerHTML = '  Format de date de naissance non valide';
-       
-      }
-    });
+birthdate.addEventListener('focusout', function(){
+  if(birthdateValid(birthdate)){
+    let small = birthdate.nextElementSibling;
+    small.innerHTML = 'le champs comporte le format requis';
+    small.classList.add('text-success');
+  } else{
   
+  let small = birthdate.nextElementSibling;
+   small.innerHTML = ' format non accepté';
+   small.classList.add('text-danger');
    
+  }
+  }); 
+
+// birthdate.onkeydown = function(){
+//   // Creation de la Reg pour birthdate
+//   const birthdateRegx =  /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]|(?:Jan|Mar|May|Jul|Aug|Oct|Dec)))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2]|(?:Jan|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec))\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)(?:0?2|(?:Feb))\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9]|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep))|(?:1[0-2]|(?:Oct|Nov|Dec)))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
+//   const birthdateRegxo = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]|(?:Jan|Mar|May|Jul|Aug|Oct|Dec)))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2]|(?:Jan|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec))\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)(?:0?2|(?:Feb))\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9]|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep))|(?:1[0-2]|(?:Oct|Nov|Dec)))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
+
+//    if(birthdateRegx.test(birthdate.value) || birthdateRegxo.test(birthdate.value)) {
+//      let small = birthdate.nextElementSibling;
+//      small.innerHTML = 'Format valide';
+//      small.classList.add('text-success');
+       
+//      } else{
+
+//        let small = birthdate.nextElementSibling;
+//        small.innerHTML = 'Format non valide';
+//        small.classList.add('text-danger');
+//      }
+// }
 
 
   // Validation Quantité de tournois effectués
