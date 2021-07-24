@@ -68,23 +68,32 @@ const first = document.getElementById("first")
       return false
     }
   }
+  function checkFirst() {
+    if(isEmpty(first)||!greaterThanTwo(first)){
+      return false
+    } else{
+    return true
+    }
+  };
+
   first.addEventListener('focusout', function(){
   if(isEmpty(first)||!greaterThanTwo(first)){
     let small = first.nextElementSibling;
     small.innerHTML = 'le champs ne doit pas etre vide et doit comporter minimum deux caractères';
     small.classList.add('text-danger');
+    console.log(checkFirst())
   } else{
   
   let small = first.nextElementSibling;
    small.innerHTML = 'Prénom Valide';
    small.classList.add('text-success');
+   console.log(checkFirst())
    
   }
   }); 
 
   // validation nom 
-
- const last = document.getElementById("last")
+  const last = document.getElementById("last")
  
 //  .innerHTML = localStorage.getItem("last");
 //   localStorage.getItem("last");
@@ -103,27 +112,51 @@ const first = document.getElementById("first")
       return false
     }
   }
+  function checkLast(){
+    if(isEmpty(last)||!moreThan(last)){
+      return false
+    } else{
+     return true
+     
+    }
+  }
+
+  
   last.addEventListener('click', function(){
     if(isEmpty(last)||!moreThan(last)){
       let small = last.nextElementSibling;
       small.innerHTML = 'le champs ne doit pas etre vide et doit comporter minimum deux caractères';
       small.classList.add('text-danger');
+      console.log(checkLast())
     } else{
     
     let small = last.nextElementSibling;
      small.innerHTML = 'Nom Valide';
      small.classList.add('text-success');
+     console.log(checkLast())
      
     }
+
     }); 
-  
+
 // validation e_mail
 
 //Ecouter la modification de l'email
  const email = document.getElementById("email")
-//  .innerHTML = localStorage.getItem("email");
-//  localStorage.getItem("email");
+ 
+ email.onkeydown = function(){
+  // Creation de la Reg pour email
+}
+function checkEmail(){
+  const regex = /^([\.\_a-zA-Z0-9]+)@([a-zA-Z]+)\.([a-zA-Z])$/;
+  const regexo = /^([\.\_a-zA-Z0-9]+)@([a-zA-Z]+)\.([a-zA-Z])$/;
+  if (regex.test(email.value) || regexo.test(email.value)) {
+ return true
 
+  } else {
+return false
+  }
+}
 //  //**********Validation email ******/
 
 email.onkeydown = function(){
@@ -135,6 +168,7 @@ email.onkeydown = function(){
     let small = email.nextElementSibling;
     small.innerHTML = 'Email Valide';
     small.classList.add('text-success');
+    console.log(checkEmail())
     
 
    } else
@@ -142,55 +176,26 @@ email.onkeydown = function(){
     let small = email.nextElementSibling;
     small.innerHTML = 'Email non valide';
     small.classList.add('text-danger');
+    console.log(checkEmail())
    }
    
 }
 
-// Declaration de la date
-const birthdate = document.getElementById('birthdate');
+// // Declaration de la date
+// const birthdate = document.getElementById('birthdate');
 
 
-// Ecouter la modif de la date
-function birthdateValid(input){
-if(input.value = "jj-mm-aaaa") {
-return true
-} else{
-  return false
-}
-};
+// // Ecouter la modif de la date
+// birthdate.addEventListener = ('focusout', function(){
+//   // Creation de la reg pour validation date
 
-birthdate.addEventListener('focusout', function(){
-  if(birthdateValid(birthdate)){
-    let small = birthdate.nextElementSibling;
-    small.innerHTML = 'le champs comporte le format requis';
-    small.classList.add('text-success');
-  } else{
-  
-  let small = birthdate.nextElementSibling;
-   small.innerHTML = ' format non accepté';
-   small.classList.add('text-danger');
-   
-  }
-  }); 
-
-// birthdate.onkeydown = function(){
-//   // Creation de la Reg pour birthdate
-//   const birthdateRegx =  /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]|(?:Jan|Mar|May|Jul|Aug|Oct|Dec)))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2]|(?:Jan|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec))\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)(?:0?2|(?:Feb))\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9]|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep))|(?:1[0-2]|(?:Oct|Nov|Dec)))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
-//   const birthdateRegxo = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]|(?:Jan|Mar|May|Jul|Aug|Oct|Dec)))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2]|(?:Jan|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec))\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)(?:0?2|(?:Feb))\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9]|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep))|(?:1[0-2]|(?:Oct|Nov|Dec)))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
-
-//    if(birthdateRegx.test(birthdate.value) || birthdateRegxo.test(birthdate.value)) {
-//      let small = birthdate.nextElementSibling;
-//      small.innerHTML = 'Format valide';
-//      small.classList.add('text-success');
-       
-//      } else{
-
-//        let small = birthdate.nextElementSibling;
-//        small.innerHTML = 'Format non valide';
-//        small.classList.add('text-danger');
-//      }
-// }
-
+//     var regex=new RegExp("([0-9]{4}[-](0[1-9]|1[0-2])[-]([0-2]{1}[0-9]{1}|3[0-1]{1})|([0-2]{1}[0-9]{1}|3[0-1]{1})[-](0[1-9]|1[0-2])[-][0-9]{4})");
+//     var dateOk=regex.test(date);
+//     if(dateOk){
+//         alert("Ok");
+//     }else{
+//         alert("not Ok");
+//     } ;
 
   // Validation Quantité de tournois effectués
 
@@ -206,9 +211,17 @@ birthdate.addEventListener('focusout', function(){
 //      return true
 //    }
 //  }
+
+function checkQuantity(){
+  if(quantity.value <= 99){
+    return true
+  } else{
+    return false
+  }
+}
  quantity.addEventListener('focusout', function()
  {
-  console.log(quantity.value);
+  
  if(quantity.value < 99)
  {
     // Recuperation de la balise small
@@ -216,6 +229,7 @@ birthdate.addEventListener('focusout', function(){
    let small = quantity.nextElementSibling;
    small.innerHTML = 'Quantite  Valide';
    small.classList.add('text-success');
+   console.log(checkQuantity())
 
  
  } else if (quantity.value > 99) {
@@ -224,6 +238,7 @@ birthdate.addEventListener('focusout', function(){
   small.innerHTML = 'Quantite non Valide';
   small.classList.remove("text-success");
   small.classList.add('text-danger');
+  console.log(checkQuantity())
  }
 
  }); 
@@ -243,8 +258,6 @@ birthdate.addEventListener('focusout', function(){
    if (!formValid) alert("Must check some option!");
    return formValid;
  }
-
- 
  if(!radios[i].checked){
    formValid = false; 
    let radioError = document.getElementById("radio-error")
@@ -325,58 +338,21 @@ const checkbox2 = document.getElementById("checkbox2")
  }); 
 
 
-// Validation du btn final formulaire
+// // Validation du btn final formulaire
+// document.getElementById("btn-submit");
+// // Ajout gestionnaire d evenenement 'submit'
 
- document.getElementById("btn-submit").addEventListener("submit", (e) => {
-  e.preventDefault();
-  let fields = document.querySelectorAll('inputs');
-  let valid = true;
+// btnsubmit.addEventListener("submit", validateForm)
 
-  fields.forEach((field) => {
-    if(!valideField(field)){
-      valid = false; 
-    };
-
-  }); 
-  if(valid){
-    e.target.submit();
-  }
-
- 
- }, false);
-
- function valideField(field){
-   if(field.checkValidity()){
-     return true;
-   } else{
-     field.classList.add('invalid');
-     field.previousElementSibling.insertAdjacentHTML('beforeend', '<span class="msg">${field.validationMessage} </span>' )
-     return false;
-   }
- }
- 
-
- // function validate() {
-//   var error; 
-//    var inputs = document.getElementById("btn-submit").getElementsByTagName("input");
-//    for (var i = 0; i < inputs.lenght; i++) {
-//      console.log(inputs[i])
-//      if (!inputs[i].value) {
-//        error = "Veuillez renseigner tous les champs";
-       
-//      }
-//    }
-//    if (error) {
-//     e.preventDefault();
-//     document.getElementsById("error").innerHTML = erreur;
-//     return false; 
-//      } else{
-//     alert('Formulaire envoyé!');
+// function validateForm(){
+//   if(validationfails){
+//     return false;
+//   } else {
+//     btn-SVGNumberList();
+//     return true;
 //   }
 // }
-     
-    
- 
-   
 
-   
+// });
+
+ 
