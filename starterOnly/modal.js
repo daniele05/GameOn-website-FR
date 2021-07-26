@@ -180,22 +180,39 @@ email.onkeydown = function(){
    }
    
 }
-
-// // Declaration de la date
-// const birthdate = document.getElementById('birthdate');
+// Declaration date 
 
 
-// // Ecouter la modif de la date
-// birthdate.addEventListener = ('focusout', function(){
-//   // Creation de la reg pour validation date
 
-//     var regex=new RegExp("([0-9]{4}[-](0[1-9]|1[0-2])[-]([0-2]{1}[0-9]{1}|3[0-1]{1})|([0-2]{1}[0-9]{1}|3[0-1]{1})[-](0[1-9]|1[0-2])[-][0-9]{4})");
-//     var dateOk=regex.test(date);
-//     if(dateOk){
-//         alert("Ok");
-//     }else{
-//         alert("not Ok");
-//     } ;
+
+
+const birthdate = document.getElementById
+('birthdate')
+console.log(birthdate.value);
+
+// Ecouter l amodif de la date
+//Creation de la Reg pour birthdate
+
+birthdate.addEventListener('focusout', function(){
+  const regexDate = /^[0-3]?[0-9]\/[01]?[0-9]\/[12][90][0-9][0-9]$/;
+  if (regexDate.test(birthdate.value) ) {
+  // bloc de code true 
+    let small = birthdate.nextElementSibling;
+    small.innerHTML = "Format non valide ou champs vide";
+    small.classList = ('text-danger');
+    console.log(birthdate.value);
+    
+  } 
+  else {
+    // bloc de code faux
+   let small = birthdate.nextElementSibling;
+ 
+   small.innerHTML = "Format  valide";
+   small.classList = ("text-success");
+   console.log(birthdate.value);
+  
+  }
+})
 
   // Validation Quantité de tournois effectués
 
@@ -243,99 +260,99 @@ function checkQuantity(){
 
  }); 
 
- //Validation button radio
+//  //Validation button radio
 
- function validateFormData(){
-   var radios = document.getElementsByName("location");
-   var formValid = false; 
+//  function validateFormData(){
+//    var radios = document.getElementsByName("location");
+//    var formValid = false; 
 
-   var i= 0; 
-   while (!formValid && i < radios.length) {
-     if (radios[i].checked) formValid = true;
-     i++;
-   }
+//    var i= 0; 
+//    while (!formValid && i < radios.length) {
+//      if (radios[i].checked) formValid = true;
+//      i++;
+//    }
 
-   if (!formValid) alert("Must check some option!");
-   return formValid;
- }
- if(!radios[i].checked){
-   formValid = false; 
-   let radioError = document.getElementById("radio-error")
-   radioError.innerHTML = 'Vous devez choisir au moins une ville'; 
-   radioError.classList.add("text-danger");
- }
+//    if (!formValid) alert("Must check some option!");
+//    return formValid;
+//  }
+//  if(!radios[i].checked){
+//    formValid = false; 
+//    let radioError = document.getElementById("radio-error")
+//    radioError.innerHTML = 'Vous devez choisir au moins une ville'; 
+//    radioError.classList.add("text-danger");
+//  }
 
   
-// Validation conditions de formulaire
-//Conditions obligatoires
+// // Validation conditions de formulaire
+// //Conditions obligatoires
 
- const checkbox1 = document.getElementById("checkbox1")
-//  .innerHTML = localStorage.getItem("checkbox1");
-//  localStorage.getItem("checkbox1");
- function obligatoriesConditions(input){
-  if(input.value===""){
-    return false
-  }else{
-    return true
-  }
-};
+//  const checkbox1 = document.getElementById("checkbox1")
+// //  .innerHTML = localStorage.getItem("checkbox1");
+// //  localStorage.getItem("checkbox1");
+//  function obligatoriesConditions(input){
+//   if(input.value===""){
+//     return false
+//   }else{
+//     return true
+//   }
+// };
  
- checkbox1.addEventListener('focusout', function(){
-  console.log(checkbox1.value)
- if(obligatoriesConditions(checkbox1)){
-   alert('le champs non vide et  doit absolument être coché')
-   // Recuperation de la balise small
+//  checkbox1.addEventListener('focusout', function(){
+//   console.log(checkbox1.value)
+//  if(obligatoriesConditions(checkbox1)){
+//    alert('le champs non vide et  doit absolument être coché')
+//    // Recuperation de la balise small
 
-   let small = checkbox1.nextElementSibling;
-   small.innerHTML = 'Conditions Valides';
-   small.classList.add(text-success);
-   return true;
+//    let small = checkbox1.nextElementSibling;
+//    small.innerHTML = 'Conditions Valides';
+//    small.classList.add(text-success);
+//    return true;
  
- } else{
-   // Recuperation de la balise small
+//  } else{
+//    // Recuperation de la balise small
 
-   let small = checkbox1.nextElementSibling;
+//    let small = checkbox1.nextElementSibling;
    
-   small.innerHTML = 'Conditions non Valides';
-    small.classList.add(text-danger);
-    return false; 
- }
- }); 
+//    small.innerHTML = 'Conditions non Valides';
+//     small.classList.add(text-danger);
+//     return false; 
+//  }
+//  }); 
 
-//Validation des consitions de formulaire
-//Conditions facultatives
-const checkbox2 = document.getElementById("checkbox2")
-//  .innerHTML = localStorage.getItem("checkbox2");
-//  localStorage.getItem("checkbox1");
- function facultativeConditions(input){
-  if(input.value===""){
-    return true
-  }else{
-    return true
-  }
-};
+// //Validation des consitions de formulaire
+// //Conditions facultatives
+// const checkbox2 = document.getElementById("checkbox2")
+// //  .innerHTML = localStorage.getItem("checkbox2");
+// //  localStorage.getItem("checkbox1");
+//  function facultativeConditions(input){
+//   if(input.value===""){
+//     return true
+//   }else{
+//     return true
+//   }
+// };
  
- checkbox2.addEventListener('focusout', function(){
-  console.log(checkbox2.value)
- if(facultativeConditions(checkbox2)){
-   alert('le champs peut etre vide ou coché')
-   // Recuperation de la balise small
+//  checkbox2.addEventListener('focusout', function(){
+//   console.log(checkbox2.value)
+//  if(facultativeConditions(checkbox2)){
+//    alert('le champs peut etre vide ou coché')
+//    // Recuperation de la balise small
 
-   let small = checkbox2.nextElementSibling;
-   small.innerHTML = 'Conditions Valides';
-   small.classList.add(text-success);
-   return true;
+//    let small = checkbox2.nextElementSibling;
+//    small.innerHTML = 'Conditions Valides';
+//    small.classList.add(text-success);
+//    return true;
  
- } else{
-   // Recuperation de la balise small
+//  } else{
+//    // Recuperation de la balise small
 
-   let small = checkbox1.nextElementSibling;
+//    let small = checkbox1.nextElementSibling;
    
-   small.innerHTML = 'Conditions non Valides';
-    small.classList.add(text-success);
-    return true; 
- }
- }); 
+//    small.innerHTML = 'Conditions non Valides';
+//     small.classList.add(text-success);
+//     return true; 
+//  }
+//  })
 
 
 // // Validation du btn final formulaire
@@ -353,6 +370,4 @@ const checkbox2 = document.getElementById("checkbox2")
 //   }
 // }
 
-// });
-
- 
+// })
