@@ -19,6 +19,10 @@ const modalClose = document.getElementById("close");
 var checkbox1 = document.getElementById("checkbox1")
 console.log(checkbox1.checked);
 const btnSubmit = document.querySelector('input[type="submit"]');
+const form = document.getElementById("valid");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+});
 
 
 
@@ -401,24 +405,7 @@ let checkbox2 = document.getElementById("checkbox2")
 document.getElementById("btn-submit")
 console.log(btnSubmit.value);
 
-form= document.getElementsByTagName("form)[0]")
-
-btnSubmit.addEventListener("submit", (e) => {
-  e.preventDefault()
-  let cocher = document.getElementById("check")
-
-  if(cocher.checked){
-    form.submit()
-      e.preventDefault()
-    
-  } else{
-    return "veuillez cocher"
-  }
-  console.log(btnSubmit.value);
-});
-
-
-btnSubmit.addEventListener('click',
+// btnSubmit.addEventListener('click', validate)
 function validate(){
   var checkbox1Valid = checkbox1Valid();
   var checkbox2Valid = checkchekbox2();
@@ -453,4 +440,4 @@ function validate(){
 
   }
 
-});
+};
