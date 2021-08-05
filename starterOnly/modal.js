@@ -16,7 +16,9 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const modalbg = document.querySelector(".bground");
 const modalClose = document.getElementById("close");
-const validation = document.getElementById("btn-submit");
+var checkbox1 = document.getElementById("checkbox1")
+console.log(checkbox1.checked);
+const btnSubmit = document.querySelector('input[type="submit"]');
 
 
 
@@ -48,7 +50,7 @@ function validate(){
  // Declarer des const par id
  // Validation Prénom
 
-const first = document.getElementById("first")
+let first = document.getElementById("first")
 // .innerHTML 
 // = localStorage.getItem("first");
 // localStorage.getItem("first");
@@ -93,7 +95,7 @@ const first = document.getElementById("first")
   }); 
 
   // validation nom 
-  const last = document.getElementById("last")
+  let last = document.getElementById("last")
  
 //  .innerHTML = localStorage.getItem("last");
 //   localStorage.getItem("last");
@@ -142,15 +144,15 @@ const first = document.getElementById("first")
 // validation e_mail
 
 //Ecouter la modification de l'email
- const email = document.getElementById("email")
+ let email = document.getElementById("email")
  
  email.onkeydown = function(){
   // Creation de la Reg pour email
 }
 function checkEmail(){
-  const regex = /^([\.\_a-zA-Z0-9]+)@([a-zA-Z]+)\.([a-zA-Z])$/;
-  const regexo = /^([\.\_a-zA-Z0-9]+)@([a-zA-Z]+)\.([a-zA-Z])$/;
-  if (regex.test(email.value) || regexo.test(email.value)) {
+  // const regex = /^([\.\_a-zA-Z0-9]+)@([a-zA-Z]+)\.([a-zA-Z])$/;
+  const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  if (regex.test(email.value)) {
  return true
 
   } else {
@@ -159,11 +161,14 @@ return false
 }
 //  //**********Validation email ******/
 
-email.onkeydown = function(){
+email.addEventListener ('focusout' , function(){
   // Creation de la Reg pour email
-  const regex = /^([\.\_a-zA-Z0-9]+)@([a-zA-Z]+)\.([a-zA-Z])$/;
-  const regexo = /^([\.\_a-zA-Z0-9]+)@([a-zA-Z]+)\.([a-zA-Z])$/;
-  if (regex.test(email.value) || regexo.test(email.value)) 
+  // const regex = /^([\.\_a-zA-Z0-9]+)@([a-zA-Z]+)\.([a-zA-Z])$/;
+   const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+  console.log(email.value);
+ 
+  if (regex.test(email.value)) 
   {
     let small = email.nextElementSibling;
     small.innerHTML = 'Email Valide';
@@ -179,55 +184,69 @@ email.onkeydown = function(){
     console.log(checkEmail())
    }
    
-}
+});
+
 // Declaration date 
 
+function checkBirthdate(){
+  
+  const regexDate = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
+  if(regexDate.test(birthdate.value)){
+    return true
 
+  } else {
+return false
+  }
+  }
 
-
-
-const birthdate = document.getElementById
+let birthdate = document.getElementById
 ('birthdate')
 console.log(birthdate.value);
 
-// Ecouter l amodif de la date
-//Creation de la Reg pour birthdate
 
+// Ecouter l amodif de la date
+console.log(birthdate.value);
 birthdate.addEventListener('focusout', function(){
-  const regexDate = /^[0-3]?[0-9]\/[01]?[0-9]\/[12][90][0-9][0-9]$/;
-  if (regexDate.test(birthdate.value) ) {
-  // bloc de code true 
+  const regexDate = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
+
+  
+
+  console.log(regexDate.test(birthdate.value));
+
+  if (regexDate.test(birthdate.value) ) 
+   {
+  // bloc de code true
+  console.log(regexDate.test(birthdate.value));
     let small = birthdate.nextElementSibling;
-    small.innerHTML = "Format non valide ou champs vide";
-    small.classList = ('text-danger');
-    console.log(birthdate.value);
+    small.innerHTML = "Format valide";
+    small.classList.add ('text-success');
+    console.log(checkBirthdate());
     
   } 
-  else {
+
+  else if (regexDate.test(birthdate.value) == false) {
     // bloc de code faux
+   
    let small = birthdate.nextElementSibling;
  
-   small.innerHTML = "Format  valide";
-   small.classList = ("text-success");
-   console.log(birthdate.value);
+   small.innerHTML = "Format  non  valide et champs pas vide ";
+   small.classList.remove ('text-success');
+   small.classList.add ('text-danger');
+  
+   console.log(checkBirthdate());
   
   }
+ 
+
 })
 
   // Validation Quantité de tournois effectués
 
- const quantity = document.getElementById("quantity")
+ let quantity = document.getElementById("quantity")
 //  .innerHTML = localStorage.getItem("quantity");
 //  localStorage.getItem("quantity");
  // validation de la quantité de tournois effectée ( non vide, minimum 0 maximum 99)
 
-//  function exactNumbers(input){
-//    if () {
-//      return false
-//    } else{
-//      return true
-//    }
-//  }
 
 function checkQuantity(){
   if(quantity.value <= 99){
@@ -238,8 +257,8 @@ function checkQuantity(){
 }
  quantity.addEventListener('focusout', function()
  {
-  
- if(quantity.value < 99)
+  console.log(quantity.value); 
+ if(quantity.value <= 99 && quantity.value != "")
  {
     // Recuperation de la balise small
 
@@ -249,7 +268,7 @@ function checkQuantity(){
    console.log(checkQuantity())
 
  
- } else if (quantity.value > 99) {
+ } else {
   
   let small = quantity.nextElementSibling;
   small.innerHTML = 'Quantite non Valide';
@@ -260,114 +279,178 @@ function checkQuantity(){
 
  }); 
 
-//  //Validation button radio
+ //Validation button radio
 
-//  function validateFormData(){
-//    var radios = document.getElementsByName("location");
-//    var formValid = false; 
+ function checkLocation() {
+  let location = document.querySelectorAll("input[type=radio]:checked");
+  let small = document.getElementById("small-location");
+  if (location.length === 1) {
+    small.classList.remove("text-danger");
+    small.classList.add('text-success');
+    small.innerHTML = "Location valide"
+    console.log("locationtrue");
+    return true;
+  } else {
+    small.classList.remove("text-success");
+    small.classList.add('text-danger');
+    small.innerHTML = "Location non valide"
+    console.log("locationfalse");
+    return false;
+    
+  }
+}
+// Validation conditions de formulaire
+//Conditions obligatoires
 
-//    var i= 0; 
-//    while (!formValid && i < radios.length) {
-//      if (radios[i].checked) formValid = true;
-//      i++;
-//    }
-
-//    if (!formValid) alert("Must check some option!");
-//    return formValid;
-//  }
-//  if(!radios[i].checked){
-//    formValid = false; 
-//    let radioError = document.getElementById("radio-error")
-//    radioError.innerHTML = 'Vous devez choisir au moins une ville'; 
-//    radioError.classList.add("text-danger");
-//  }
-
+function checkbox1Valid(){
   
-// // Validation conditions de formulaire
-// //Conditions obligatoires
+  let checkbox1 = document.getElementById("checkbox1")
+  if(checkbox1.checked == true ){
+  return true
+}else{
+  return false
+}
+}
+console.log(checkbox1Valid());
 
-//  const checkbox1 = document.getElementById("checkbox1")
-// //  .innerHTML = localStorage.getItem("checkbox1");
-// //  localStorage.getItem("checkbox1");
-//  function obligatoriesConditions(input){
+// console.log('checkbox1.checked')
+//  function checkbox1() {
 //   if(input.value===""){
 //     return false
 //   }else{
 //     return true
 //   }
 // };
- 
-//  checkbox1.addEventListener('focusout', function(){
-//   console.log(checkbox1.value)
-//  if(obligatoriesConditions(checkbox1)){
-//    alert('le champs non vide et  doit absolument être coché')
-//    // Recuperation de la balise small
 
-//    let small = checkbox1.nextElementSibling;
-//    small.innerHTML = 'Conditions Valides';
-//    small.classList.add(text-success);
-//    return true;
- 
-//  } else{
-//    // Recuperation de la balise small
 
-//    let small = checkbox1.nextElementSibling;
+ checkbox1.addEventListener('focusout', function(){
+  console.log(checkbox1.value)
+ if(obligatoriesConditions(checkbox1)){
+   alert('le champs non vide et  doit absolument être coché')
+   // Recuperation de la balise small
+
+   let small = checkbox1.nextElementSibling;
+   small.innerHTML = 'Conditions Valides';
+   small.classList.add(text-success);
+   console.log(checkbox1Valid());
+   return true;
+  
+ 
+ } else{
+   // Recuperation de la balise small
+
+   let small = checkbox1.nextElementSibling;
    
-//    small.innerHTML = 'Conditions non Valides';
-//     small.classList.add(text-danger);
-//     return false; 
-//  }
-//  }); 
+   small.innerHTML = 'Conditions non Valides';
+    small.classList.add(text-danger);
+    console.log(checkbox1Valid());
+    return false; 
+ }
+ }); 
 
-// //Validation des consitions de formulaire
-// //Conditions facultatives
-// const checkbox2 = document.getElementById("checkbox2")
-// //  .innerHTML = localStorage.getItem("checkbox2");
-// //  localStorage.getItem("checkbox1");
-//  function facultativeConditions(input){
-//   if(input.value===""){
-//     return true
-//   }else{
-//     return true
-//   }
-// };
+
+//Validation des conditions de formulaire
+//Conditions facultatives
+
+function checkbox2Valid(){
+  if(facultativeConditions(checkbox2)){
+  return true
+}else{
+  return true
+}
+};
+
+let checkbox2 = document.getElementById("checkbox2")
+//  .innerHTML = localStorage.getItem("checkbox2");
+//  localStorage.getItem("checkbox1");
+
+ function facultativeConditions(input){
+  if(input.value===""){
+    return true
+  }else{
+    return true
+  }
+};
  
-//  checkbox2.addEventListener('focusout', function(){
-//   console.log(checkbox2.value)
-//  if(facultativeConditions(checkbox2)){
-//    alert('le champs peut etre vide ou coché')
-//    // Recuperation de la balise small
+ checkbox2.addEventListener('focusout', function(){
+  console.log(checkbox2.value)
+ if(facultativeConditions(checkbox2)){
+   alert('le champs peut etre vide ou coché')
+   // Recuperation de la balise small
 
-//    let small = checkbox2.nextElementSibling;
-//    small.innerHTML = 'Conditions Valides';
-//    small.classList.add(text-success);
-//    return true;
+   let small = checkbox2.nextElementSibling;
+   small.innerHTML = 'Conditions Valides';
+   small.classList.add(text-success);
+   console.log(checkbox2Valid());
+   return true;
  
-//  } else{
-//    // Recuperation de la balise small
+ } else{
+   // Recuperation de la balise small
 
-//    let small = checkbox1.nextElementSibling;
+   let small = checkbox1.nextElementSibling;
    
-//    small.innerHTML = 'Conditions non Valides';
-//     small.classList.add(text-success);
-//     return true; 
-//  }
-//  })
+   small.innerHTML = 'Conditions non Valides';
+    small.classList.add(text-success);
+    console.log(checkbox2Valid());
+    return true; 
+ }
+ })
 
 
-// // Validation du btn final formulaire
-// document.getElementById("btn-submit");
-// // Ajout gestionnaire d evenenement 'submit'
+ // Validation du btn final formulaire
+document.getElementById("btn-submit")
+console.log(btnSubmit.value);
 
-// btnsubmit.addEventListener("submit", validateForm)
+form= document.getElementsByTagName("form)[0]")
 
-// function validateForm(){
-//   if(validationfails){
-//     return false;
-//   } else {
-//     btn-SVGNumberList();
-//     return true;
-//   }
-// }
+btnSubmit.addEventListener("submit", (e) => {
+  e.preventDefault()
+  let cocher = document.getElementById("check")
 
-// })
+  if(cocher.checked){
+    form.submit()
+      e.preventDefault()
+    
+  } else{
+    return "veuillez cocher"
+  }
+  console.log(btnSubmit.value);
+});
+
+
+btnSubmit.addEventListener('click',
+function validate(){
+  var checkbox1Valid = checkbox1Valid();
+  var checkbox2Valid = checkchekbox2();
+  console.log(checkbox1Valid());
+  let firstValid = checkFirst();
+  let lastValid = checkLast();
+  let emailValid = checkEmail();
+  let birthdateValid = checkBirthdate();
+  let quantityValid = checkQuantity();
+  let locationValid = checkLocation();
+
+
+  
+  
+  
+  
+  if (firstValid && lastValid && emailValid && birthdateValid && quantityValid && locationValid 
+    && checkbox1Valid && checkbox2Valid){
+
+  
+    const data = {
+      firstValid: firstValid,
+      lastValid: lastValid,
+      emailValid: emailValid,
+      birthdateValid: birthdateValid,
+      quantityValid: quantityValid,
+      locationValid: locationValid,
+      checkbox1Valid: checkbox1Valid,
+    };
+    
+    console.log(data);
+
+  }
+
+});
