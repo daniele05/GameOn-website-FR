@@ -42,7 +42,6 @@ function launchModal() {
 }
 // const modalClose = document.getElementsByClassName(".close");
 function close(){
-
   modalbg.style.display = "none";
 }
 function validate(){
@@ -155,7 +154,7 @@ let first = document.getElementById("first")
 }
 function checkEmail(){
   // const regex = /^([\.\_a-zA-Z0-9]+)@([a-zA-Z]+)\.([a-zA-Z])$/;
-  const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const regex = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
   if (regex.test(email.value)) {
  return true
 
@@ -163,12 +162,12 @@ function checkEmail(){
 return false
   }
 }
-//  //**********Validation email ******/
+//  //***Validation email ***/
 
 email.addEventListener ('focusout' , function(){
   // Creation de la Reg pour email
   // const regex = /^([\.\_a-zA-Z0-9]+)@([a-zA-Z]+)\.([a-zA-Z])$/;
-   const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+   const regex = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
 
   console.log(email.value);
  
@@ -310,10 +309,10 @@ function checkbox1Valid(){
   
   let checkbox1 = document.getElementById("checkbox1")
   if(checkbox1.checked == true ){
-  return true
-}else{
-  return false
-}
+        return true
+  }else{
+    return false
+  }
 }
 console.log(checkbox1Valid());
 
@@ -407,25 +406,17 @@ console.log(btnSubmit.value);
 
 // btnSubmit.addEventListener('click', validate)
 function validate(){
-  var checkbox1Valid = checkbox1Valid();
-  var checkbox2Valid = checkchekbox2();
-  console.log(checkbox1Valid());
+  let ckBox1Valid = checkbox1Valid();
+  let ckBox2Valid = checkbox2Valid();
   let firstValid = checkFirst();
   let lastValid = checkLast();
   let emailValid = checkEmail();
   let birthdateValid = checkBirthdate();
   let quantityValid = checkQuantity();
   let locationValid = checkLocation();
-
-
-  
-  
-  
   
   if (firstValid && lastValid && emailValid && birthdateValid && quantityValid && locationValid 
-    && checkbox1Valid && checkbox2Valid){
-
-  
+    && ckBox1Valid && ckBox2Valid){
     const data = {
       firstValid: firstValid,
       lastValid: lastValid,
@@ -433,11 +424,11 @@ function validate(){
       birthdateValid: birthdateValid,
       quantityValid: quantityValid,
       locationValid: locationValid,
-      checkbox1Valid: checkbox1Valid,
+        ckBox1Valid: ckBox1Valid,
+        ckBox2Valid: ckBox2Valid
     };
     
     console.log(data);
-
+      close();
   }
-
 };
