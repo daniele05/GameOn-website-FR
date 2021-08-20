@@ -569,6 +569,5 @@ color:green;
   border: 2px solid red;
 }
 
-
-
-
+@media (min-width: 480px) and (max-width: 767px) {
+}

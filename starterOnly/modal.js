@@ -1,6 +1,5 @@
 
 
-
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -81,10 +80,10 @@ let first = document.getElementById("first")
     }
   };
 
-  first.addEventListener('focusout', function(){
+  first.addEventListener('click', function(){
   if(isEmpty(first)||!greaterThanTwo(first)){
     let small = first.nextElementSibling;
-    small.innerHTML = 'le champs ne doit pas etre vide et doit comporter minimum deux caractères';
+    small.innerHTML = 'le champs ne doit pas etre vide et doit avoir au moins deux caractères';
     small.classList.add('text-danger');
     console.log(checkFirst())
   } else{
@@ -103,13 +102,6 @@ let first = document.getElementById("first")
 //  .innerHTML = localStorage.getItem("last");
 //   localStorage.getItem("last");
 
- function isEmpty(input){
-   if(input.value===""){
-     return true
-   }else{
-     return false
-   }
- };
   function moreThan(input){
     if (input.value.length>=2) {
       return true
@@ -130,7 +122,7 @@ let first = document.getElementById("first")
   last.addEventListener('click', function(){
     if(isEmpty(last)||!moreThan(last)){
       let small = last.nextElementSibling;
-      small.innerHTML = 'le champs ne doit pas etre vide et doit comporter minimum deux caractères';
+      small.innerHTML = 'le champs ne doit pas etre vide et doit avoir au moins deux caractères';
       small.classList.add('text-danger');
       console.log(checkLast())
     } else{
@@ -144,50 +136,59 @@ let first = document.getElementById("first")
 
     }); 
 
-// validation e_mail
+//  validation email
 
-//Ecouter la modification de l'email
- let email = document.getElementById("email")
- 
- email.onkeydown = function(){
-  // Creation de la Reg pour email
-}
-function checkEmail(){
-  // const regex = /^([\.\_a-zA-Z0-9]+)@([a-zA-Z]+)\.([a-zA-Z])$/;
+let mail = document.getElementById('mail')
+console.log(mail.value);
+
+function checkMail(){
+  
   const regex = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
-  if (regex.test(email.value)) {
- return true
+  if(regex.test(mail.value)){
+    return true
 
   } else {
 return false
   }
-}
-//  //***Validation email ***/
+  }
 
-email.addEventListener ('focusout' , function(){
-  // Creation de la Reg pour email
-  // const regex = /^([\.\_a-zA-Z0-9]+)@([a-zA-Z]+)\.([a-zA-Z])$/;
-   const regex = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
 
-  console.log(email.value);
- 
-  if (regex.test(email.value)) 
-  {
-    let small = email.nextElementSibling;
-    small.innerHTML = 'Email Valide';
-    small.classList.add('text-success');
-    console.log(checkEmail())
-    
+// Ecouter la modif de l'email
+console.log(mail.value);
+mail.addEventListener('click', function(){
+  const regex = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
 
-   } else
+  console.log(regex.test(mail.value));
+
+  if (regex.test(mail.value)===true ) 
    {
-    let small = email.nextElementSibling;
-    small.innerHTML = 'Email non valide';
-    small.classList.add('text-danger');
-    console.log(checkEmail())
-   }
-   
-});
+  // Reaction a la valeur vraie de regex.test
+  
+  console.log(regex.test(mail.value));
+    let small = mail.nextElementSibling;
+    small.innerHTML = "Format valide";
+    small.classList.remove ('text-danger');
+    small.classList.add ('text-success');
+
+    console.log(checkMail());
+    
+  } 
+
+  else if (regex.test(mail.value)===false ){
+
+   // Reaction a la valeur faux de regex.test
+
+   let small = mail.nextElementSibling;
+   small.innerHTML = "Format  non  valide et champs pas vide ";
+   small.classList.remove ('text-success');
+   small.classList.add ('text-danger');
+  
+   console.log(checkMail());
+  
+  }
+
+})
+
 
 // Declaration date 
 
@@ -209,7 +210,7 @@ console.log(birthdate.value);
 
 // Ecouter l amodif de la date
 console.log(birthdate.value);
-birthdate.addEventListener('focusout', function(){
+birthdate.addEventListener('click', function(){
   const regexDate = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
 
   
@@ -258,7 +259,7 @@ function checkQuantity(){
     return false
   }
 }
- quantity.addEventListener('focusout', function()
+ quantity.addEventListener('click', function()
  {
   console.log(quantity.value); 
  if(quantity.value <= 99 && quantity.value != "")
@@ -308,6 +309,9 @@ function checkQuantity(){
 function checkbox1Valid(){
   
   let checkbox1 = document.getElementById("checkbox1")
+  console.log(checkbox1.value);
+  
+
   if(checkbox1.checked == true ){
         return true
   }else{
@@ -316,37 +320,19 @@ function checkbox1Valid(){
 }
 console.log(checkbox1Valid());
 
-// console.log('checkbox1.checked')
-//  function checkbox1() {
-//   if(input.value===""){
-//     return false
-//   }else{
-//     return true
-//   }
-// };
-
-
- checkbox1.addEventListener('focusout', function(){
+function obligatoriesConditions(){
+  
+}
+ checkbox1.addEventListener('click', function(){
   console.log(checkbox1.value)
  if(obligatoriesConditions(checkbox1)){
-   alert('le champs non vide et  doit absolument être coché')
+   
    // Recuperation de la balise small
-
-   let small = checkbox1.nextElementSibling;
-   small.innerHTML = 'Conditions Valides';
-   small.classList.add(text-success);
-   console.log(checkbox1Valid());
    return true;
   
  
  } else{
    // Recuperation de la balise small
-
-   let small = checkbox1.nextElementSibling;
-   
-   small.innerHTML = 'Conditions non Valides';
-    small.classList.add(text-danger);
-    console.log(checkbox1Valid());
     return false; 
  }
  }); 
@@ -364,8 +350,8 @@ function checkbox2Valid(){
 };
 
 let checkbox2 = document.getElementById("checkbox2")
-//  .innerHTML = localStorage.getItem("checkbox2");
-//  localStorage.getItem("checkbox1");
+console.log(checkbox2.value);
+
 
  function facultativeConditions(input){
   if(input.value===""){
@@ -375,26 +361,15 @@ let checkbox2 = document.getElementById("checkbox2")
   }
 };
  
- checkbox2.addEventListener('focusout', function(){
+ checkbox2.addEventListener('click', function(){
   console.log(checkbox2.value)
  if(facultativeConditions(checkbox2)){
-   alert('le champs peut etre vide ou coché')
+   
    // Recuperation de la balise small
-
-   let small = checkbox2.nextElementSibling;
-   small.innerHTML = 'Conditions Valides';
-   small.classList.add(text-success);
-   console.log(checkbox2Valid());
    return true;
  
  } else{
    // Recuperation de la balise small
-
-   let small = checkbox1.nextElementSibling;
-   
-   small.innerHTML = 'Conditions non Valides';
-    small.classList.add(text-success);
-    console.log(checkbox2Valid());
     return true; 
  }
  })
@@ -404,13 +379,15 @@ let checkbox2 = document.getElementById("checkbox2")
 document.getElementById("btn-submit")
 console.log(btnSubmit.value);
 
-// btnSubmit.addEventListener('click', validate)
+// chaque fois que l element est cliqué, une fenetre contextuelle s'affiche// avec pour message <"Formulaire valité!>
+// btn-submit.addEventListener('click', validate)
+
 function validate(){
   let ckBox1Valid = checkbox1Valid();
   let ckBox2Valid = checkbox2Valid();
   let firstValid = checkFirst();
   let lastValid = checkLast();
-  let emailValid = checkEmail();
+  let emailValid = checkMail();
   let birthdateValid = checkBirthdate();
   let quantityValid = checkQuantity();
   let locationValid = checkLocation();
@@ -431,5 +408,8 @@ function validate(){
     console.log(data);
       close();
   }
+  else{
+    alert ("Formulaire non valide")
+    
+  }
 };
-
