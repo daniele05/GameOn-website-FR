@@ -9,6 +9,8 @@ function editNav() {
   }
 }
 
+
+
 // DOM Elements
 
 const modalBtn = document.querySelectorAll(".modal-btn");
@@ -18,10 +20,7 @@ const modalClose = document.getElementById("close");
 var checkbox1 = document.getElementById("checkbox1")
 console.log(checkbox1.checked);
 const btnSubmit = document.querySelector('input[type="submit"]');
-const form = document.getElementById("valid");
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-});
+
 
 
 
@@ -46,6 +45,9 @@ function close(){
 function validate(){
   
 }
+
+
+
 
 
 
@@ -379,6 +381,7 @@ console.log(checkbox2.value);
 document.getElementById("btn-submit")
 console.log(btnSubmit.value);
 
+
 // chaque fois que l element est cliqué, une fenetre contextuelle s'affiche// avec pour message <"Formulaire valité!>
 // btn-submit.addEventListener('click', validate)
 
@@ -394,6 +397,7 @@ function validate(){
   
   if (firstValid && lastValid && emailValid && birthdateValid && quantityValid && locationValid 
     && ckBox1Valid && ckBox2Valid){
+      alert("C'est parti");
     const data = {
       firstValid: firstValid,
       lastValid: lastValid,
@@ -403,13 +407,44 @@ function validate(){
       locationValid: locationValid,
         ckBox1Valid: ckBox1Valid,
         ckBox2Valid: ckBox2Valid
+        // les donnees sont ok, on peut envoyer le formulaire return true; 
+      
     };
     
     console.log(data);
       close();
+     
   }
   else{
-    alert ("Formulaire non valide")
+    // sinon  on affiche un message 
+    alert("Merci de remplir les champs obligatoires"); 
+    
+    // et on indique de ne pas envoyer le formulaire return false;
     
   }
 };
+// /* ajout de l'element*/
+// en entrant dans le document
+
+
+const form = document.getElementById("valid") .addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  let fields= document.querySelectorAll('input')
+  console.log(fields);
+  let valid = true; 
+
+  fields.forEach((field) =>{
+    if(!validateField(field)){
+      valid = false;
+    };
+  }); 
+  if(valid){
+    e.target.submit();
+  }
+  
+}, false);
+
+
+
+
