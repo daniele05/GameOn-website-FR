@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @media screen and (max-width: 768px) {
     .hero-section {
       display: block;
@@ -49,3 +50,13 @@
   }
 
  
+=======
+@media (min-width: 800px){
+.topnav{
+display: none;
+}
+.bground{
+
+}
+}
+>>>>>>> 1bc460d442ae0ce34d698d6f2460ed01be04c4a7

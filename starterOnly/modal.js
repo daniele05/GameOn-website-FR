@@ -22,10 +22,6 @@ var checkbox1 = document.getElementById("checkbox1")
 console.log(checkbox1.checked);
 const btnSubmit = document.querySelector('input[type="submit"]');
 
-
-
-
-
 console.log(modalBtn)
 
 // launch and close the modal event
@@ -92,23 +88,8 @@ field.valid = true;
   
 }, false);
 
-// declaration variable  erreur afin d agir sur la soumission 
-
-// let erreur= document.getElementById("erreur").addEventListener(click, (e))
-// {
-//   e.preventDefault();
-
-//   if( firstValid = checkFirst){
-    
-//   } else{
-//     alert("Champs ne peut etre vide et doit avoir au moins deux caractères"); 
-//   }
-// };
-
-
-
  // Declarer des differents champs 
-
+ // Declarer des const par id
  // Validation Prénom
 
 let first = document.getElementById("first")
@@ -424,9 +405,7 @@ function facultativeConditions(){
 document.getElementById("btn-submit"). addEventListener('click', validate);
 console.log(btnSubmit.value);
 
-
-// Creation de la function validate afin de faire passer toutes les verifications des differents champs
-
+// btn-submit.addEventListener('click', validate)
 
 function validate(){
   let ckBox1Valid = checkbox1Valid();
@@ -448,38 +427,20 @@ function validate(){
       birthdateValid: birthdateValid,
       quantityValid: quantityValid,
       locationValid: locationValid,
-        ckBox1Valid: ckBox1Valid,
-        ckBox2Valid: ckBox2Valid,
+      ckBox1Valid: ckBox1Valid,
+      ckBox2Valid: ckBox2Valid,
       
     };
-  
     console.log(data);
-    modalbg.style.display = "none";
-    modalBody.style.display = "none";
-    bgclosed.style.display = "block";
-    modalEnd.innerHTML = "Merci d'avoir soumis vos informations d'inscription.";
-    forward.style.display = "block";
-    forward.style.marginBottom = "60px";
-    forward.addEventListener("click", closeForward);
-    closeEnd.addEventListener("click", crossClose);
-    console.log("okValid");
-    return true;
-} else{
-    // Dans le cas contraire, affichez l'alerte suivante 
-    alert("Formulaire invalide"); 
-    
-  }
-};
-
-    
-
-
-
-
-
-
-
-
+}  else{
+  // sinon  on affiche un message 
+  alert("Merci de remplir les champs obligatoires"); 
+  
+  // et on indique de ne pas envoyer le formulaire return false;
+  
+}
+}
+      close();
 
 
 
