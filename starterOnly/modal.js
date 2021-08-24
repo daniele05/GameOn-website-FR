@@ -9,19 +9,20 @@ function editNav() {
   }
 }
 
+
+
 // DOM Elements
 
 const modalBtn = document.querySelectorAll(".modal-btn");
+
 const formData = document.querySelectorAll(".formData");
 const modalbg = document.querySelector(".bground");
 const modalClose = document.getElementById("close");
 var checkbox1 = document.getElementById("checkbox1")
 console.log(checkbox1.checked);
 const btnSubmit = document.querySelector('input[type="submit"]');
-const form = document.getElementById("valid");
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-});
+
+
 
 
 
@@ -47,19 +48,75 @@ function validate(){
   
 }
 
+// Declaration du form 
+
+const form = document.getElementById("valid");
+let fields= document.querySelectorAll('input');
 
 
- // Declarer des const par id
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  
+  fields.forEach((field) => {resetField(field)});
+  let valid = true; 
+
+
+  function validateField(field){
+    if(field.checkValidity()){
+      return true; 
+     } else{
+       field.classList.add('invalid'); 
+      field.previousElementSibling.insertAdjacentHTML('beforeend, <span class="msg">${field.validationMessage}</span>')
+      return false; 
+    }
+     }
+      function resetField(field){
+  let fieldLabel = field.previousElementSibling;
+  field.classList.remove('invalid');
+  while(fieldLabel.firstElementChild){
+  fieldLabel.removeChild(fieldLabel.firstElementChild);
+ }
+ }
+
+field.valid = true;
+  
+  fields.forEach((field) =>{
+    if(!validateField(field)){
+      valid = false;
+    };
+  }); 
+  if(valid){
+    e.target.submit();
+  }
+  
+}, false);
+
+// declaration variable  erreur afin d agir sur la soumission 
+
+// let erreur= document.getElementById("erreur").addEventListener(click, (e))
+// {
+//   e.preventDefault();
+
+//   if( firstValid = checkFirst){
+    
+//   } else{
+//     alert("Champs ne peut etre vide et doit avoir au moins deux caractères"); 
+//   }
+// };
+
+
+
+ // Declarer des differents champs 
+
  // Validation Prénom
 
 let first = document.getElementById("first")
-// .innerHTML 
-// = localStorage.getItem("first");
-// localStorage.getItem("first");
 
- // vérification de ma fonction 
+// vérification de ma fonction 
+
  function isEmpty(input){
-   if(input.value===""){
+   if(!input.value===""){
      return true
    }else{
      return false
@@ -98,9 +155,7 @@ let first = document.getElementById("first")
 
   // validation nom 
   let last = document.getElementById("last")
- 
-//  .innerHTML = localStorage.getItem("last");
-//   localStorage.getItem("last");
+
 
   function moreThan(input){
     if (input.value.length>=2) {
@@ -208,7 +263,7 @@ let birthdate = document.getElementById
 console.log(birthdate.value);
 
 
-// Ecouter l amodif de la date
+// Ecouter la modification de la date
 console.log(birthdate.value);
 birthdate.addEventListener('click', function(){
   const regexDate = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
@@ -247,10 +302,6 @@ birthdate.addEventListener('click', function(){
   // Validation Quantité de tournois effectués
 
  let quantity = document.getElementById("quantity")
-//  .innerHTML = localStorage.getItem("quantity");
-//  localStorage.getItem("quantity");
- // validation de la quantité de tournois effectée ( non vide, minimum 0 maximum 99)
-
 
 function checkQuantity(){
   if(quantity.value <= 99){
@@ -340,25 +391,19 @@ function obligatoriesConditions(){
 
 //Validation des conditions de formulaire
 //Conditions facultatives
-
 function checkbox2Valid(){
-  if(facultativeConditions(checkbox2)){
-  return true
-}else{
-  return true
-}
-};
-
-let checkbox2 = document.getElementById("checkbox2")
+  let checkbox2 = document.getElementById("checkbox2")
 console.log(checkbox2.value);
 
-
- function facultativeConditions(input){
-  if(input.value===""){
+  if(checkbox2.checked == true){
     return true
   }else{
     return true
   }
+}
+console.log(checkbox2Valid());
+
+function facultativeConditions(){
 };
  
  checkbox2.addEventListener('click', function(){
@@ -375,12 +420,13 @@ console.log(checkbox2.value);
  })
 
 
- // Validation du btn final formulaire
-document.getElementById("btn-submit")
+ // declaration du btn-submit
+document.getElementById("btn-submit"). addEventListener('click', validate);
 console.log(btnSubmit.value);
 
-// chaque fois que l element est cliqué, une fenetre contextuelle s'affiche// avec pour message <"Formulaire valité!>
-// btn-submit.addEventListener('click', validate)
+
+// Creation de la function validate afin de faire passer toutes les verifications des differents champs
+
 
 function validate(){
   let ckBox1Valid = checkbox1Valid();
@@ -394,6 +440,7 @@ function validate(){
   
   if (firstValid && lastValid && emailValid && birthdateValid && quantityValid && locationValid 
     && ckBox1Valid && ckBox2Valid){
+      alert("C'est parti");
     const data = {
       firstValid: firstValid,
       lastValid: lastValid,
@@ -402,14 +449,40 @@ function validate(){
       quantityValid: quantityValid,
       locationValid: locationValid,
         ckBox1Valid: ckBox1Valid,
-        ckBox2Valid: ckBox2Valid
+        ckBox2Valid: ckBox2Valid,
+      
     };
-    
+  
     console.log(data);
-      close();
-  }
-  else{
-    alert ("Formulaire non valide")
+    modalbg.style.display = "none";
+    modalBody.style.display = "none";
+    bgclosed.style.display = "block";
+    modalEnd.innerHTML = "Merci d'avoir soumis vos informations d'inscription.";
+    forward.style.display = "block";
+    forward.style.marginBottom = "60px";
+    forward.addEventListener("click", closeForward);
+    closeEnd.addEventListener("click", crossClose);
+    console.log("okValid");
+    return true;
+} else{
+    // Dans le cas contraire, affichez l'alerte suivante 
+    alert("Formulaire invalide"); 
     
   }
 };
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
