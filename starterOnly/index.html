@@ -48,9 +48,6 @@
         <div class="hero-img">
           <img src="./bg_img.jpg" alt="img" />
         </div>
-        <button class="btn-signup modal-btn">
-          je m'inscris
-        </button>
       </div>
 
       <div class="bground">
@@ -59,19 +56,16 @@
           <span class="close" id="close"></span>
           <!--Avec un bouton de formulaire disparaissant au hover-->
           <span class="close-btn" onclick= "close-btn()" value="Fermer la fenetre"></span>
+
           <form class="modal-body"
-              id="valid"
+              id="gameOnFormId"
               action="index.html"
               method="get"
               onsubmit="return validate();"
-              <p id="erreur"></p>
-          
+            >
 
-            
-          
-          
               <div
-                class="formData" id="formData" novalidate>
+                class="formData" id="formDataFirstName" novalidate>
                 <label for="first">Prénom</label><br>
                 <input
                   class="text-control"
@@ -83,7 +77,7 @@
                 <span></span>
               </div>
               <div
-                class="formData" id="formData">
+                class="formData" id="formDataLastName">
                 <label for="last">Nom</label><br>
                 <input
                   class="text-control"
@@ -95,7 +89,7 @@
                 <span></span>
               </div>
               <div
-                class="formData" id="formData">
+                class="formData" id="formDataEmail">
                 <label for="mail">E-mail</label><br>
                 <input
                   class="text-control"
@@ -107,7 +101,7 @@
                 <small></small>
               </div>
               <div
-                class="formData" id="formData">
+                class="formData" id="formDataBirthDate">
                 <label for="birthdate">Date de naissance</label><br>
                 <input
                   class="text-control"
@@ -120,7 +114,7 @@
                  <small></small>
               </div>
               <div
-                class="formData" id="formData">
+                class="formData" id="formDataGameQuantity">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé (0-99) ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" value="">
                 <small></small>
@@ -133,7 +127,7 @@
                   type="radio"
                   id="location1"
                   name="location"
-                  value=0 
+                  value=0
                 />
                 <label class="checkbox-label" for="location1">
                   <span class="checkbox-icon"></span>
@@ -184,7 +178,7 @@
                   Boston</label
                 >
                 <input
-                  class="checkbox-input" 
+                  class="checkbox-input"
                   type="radio"
                   id="location6"
                   name="location"
@@ -196,8 +190,6 @@
                   Portland</label
                 >
               </div>
-            
-          
 
               <div
                 class="formData">
@@ -220,8 +212,10 @@
               </div>
               <input
                id="btn-submit" type="submit" class="button" value="C'est parti"/>
-              
+
             </form>
+
+
           </div>
         </div>
       </div>
@@ -231,6 +225,11 @@
         Copyright 2014 - 2020, GameOn Inc.
       </p>
     </footer>
+    <script type="text/javascript">
+      window.onload = function() {
+        document.getElementById("gameOnFormId").style.display = "none";
+      };
+    </script>
     <script src="modal.js"></script>
   </body>
 </html>
