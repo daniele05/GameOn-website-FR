@@ -13,7 +13,7 @@
       content: unset;
     }
     .hero-content  {
-      display: none;
+      display: block;
     }
     .btn-signup{
         display: block;
