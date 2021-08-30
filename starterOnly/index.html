@@ -12,7 +12,7 @@
       rel="stylesheet"
     />
   </head>
-  <body>
+  <div>
     <div class="topnav" id="myTopnav">
       <div class="header-logo">
       <img alt="logo" src="Logo.png" width="100" height="20" />
@@ -30,7 +30,7 @@
     </div>
     </div>
   
-    <main>
+    <div>
       <div class="hero-section">
         <div class="hero-content">
           <h1 class="hero-headline">
@@ -55,7 +55,7 @@
             <!--Avec un bouton de formulaire-->
           <span class="close" id="close"></span>
           <!--Avec un bouton de formulaire disparaissant au hover-->
-          <span class="close-btn" onclick= "close-btn()" value="Fermer la fenetre"></span>
+          <span class="close-btn" onclick= "close-btn()"></span>
 
           <form class="modal-body"
               id="gameOnFormId"
@@ -65,7 +65,7 @@
             >
 
               <div
-                class="formData" id="formDataFirstName" novalidate>
+                class="formData" id="formDataFirstName">
                 <label for="first">Prénom</label><br>
                 <input
                   class="text-control"
@@ -107,7 +107,6 @@
                   class="text-control"
                   type="date"
                   id="birthdate"
-                  placeholder="jj-mm-aaaa"
                   name="birthdate"
                   value=""
                   />
@@ -219,7 +218,7 @@
           </div>
         </div>
       </div>
-    </main>
+    </div>
     <footer>
       <p class="copyrights">
         Copyright 2014 - 2020, GameOn Inc.
